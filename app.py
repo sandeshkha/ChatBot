@@ -14,9 +14,8 @@ def home():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method('POST'):
-        
-        
-    return flask.render_template('login.html')
+        pass
+    return render_template('login.html')
 
 @app.route('/chat')
 def chat():
