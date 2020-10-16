@@ -16,6 +16,15 @@ def login():
     if request.method == 'POST':
         username = request.form.get('username')
         password_input = request.form.get('password')
+        user = get_user(username)
+
+        if user and user.check_password(password_input):
+            login_user(user)
+            return redirect(url_for('home'))
+        else:
+            message = 'Failed Login!'
+    return render_template('home.html', message=message)
+        
     return render_template('login.html')
 
 @app.route('/chat')
