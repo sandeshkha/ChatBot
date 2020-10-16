@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_socketio import SocketIO, join_room
 from flask_login import LoginManager
+from db import get_user
 
 app = Flask(__name__)
 socketio = SocketIO(app)
@@ -13,6 +14,7 @@ def home():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    message = ''
     if request.method == 'POST':
         username = request.form.get('username')
         password_input = request.form.get('password')
@@ -23,9 +25,7 @@ def login():
             return redirect(url_for('home'))
         else:
             message = 'Failed Login!'
-    return render_template('home.html', message=message)
-        
-    return render_template('login.html')
+    return render_template('login.html', message=message)
 
 @app.route('/chat')
 def chat():
