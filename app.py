@@ -15,7 +15,7 @@ def home():
 def login():
     if request.method == 'POST':
         username = request.form.get('username')
-        password = request.form.get('password')
+        password_input = request.form.get('password')
     return render_template('login.html')
 
 @app.route('/chat')
